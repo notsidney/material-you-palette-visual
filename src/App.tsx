@@ -20,15 +20,14 @@ export default function App() {
   return (
     <div className="App">
       <header>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setColor((document.getElementById("color") as any).value);
-          }}
-        >
+        <form>
           <label htmlFor="color">Key color:</label>
-          <input id="color" type="color" defaultValue={color} />
-          <input type="submit" value="Generate" />
+          <input
+            id="color"
+            type="color"
+            defaultValue={color}
+            onChange={(e) => setColor(e.target.value)}
+          />
         </form>
 
         <fieldset>
