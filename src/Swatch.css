@@ -1,0 +1,24 @@
+.swatch {
+  width: var(--swatch-size);
+  height: var(--swatch-size);
+  padding: 0.5em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: auto 3ch;
+  align-items: baseline;
+  gap: 0.125em 0.5em;
+  justify-content: center;
+
+  margin: 0;
+}
+dt {
+  font-size: 80%;
+}
+dd {
+  text-align: right;
+  margin: 0;
+}
