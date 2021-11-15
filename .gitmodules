@@ -1,0 +1,3 @@
+[submodule "src/material-color-utilities"]
+	path = src/material-color-utilities
+	url = https://github.com/notsidney/material-color-utilities
