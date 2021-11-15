@@ -9,6 +9,9 @@ export default function App() {
   const [color, setColor] = useState("#3a6920");
   const colorAsNum = parseInt(color.replace("#", ""), 16);
   const colorAsHct = HCT.fromInt(colorAsNum);
+  const colorClosestTone = TONES.reduce((a, b) =>
+    Math.abs(b - colorAsHct.tone) < Math.abs(a - colorAsHct.tone) ? b : a
+  );
 
   const generated = generateCorePalette(colorAsNum);
   console.log(generated);
@@ -63,22 +66,20 @@ export default function App() {
         <tbody>
           <tr>
             <th>Key color</th>
-            {new Array(TONES.length)
-              .fill(0)
-              .map((_, i) =>
-                i === Math.round(colorAsHct.tone / 10) ? (
-                  <Swatch
-                    key={i}
-                    hex={color}
-                    h={colorAsHct.hue}
-                    c={colorAsHct.chroma}
-                    t={colorAsHct.tone}
-                    display={display}
-                  />
-                ) : (
-                  <td key={i} className="swatch" />
-                )
-              )}
+            {TONES.map((tone) =>
+              tone === colorClosestTone ? (
+                <Swatch
+                  key={tone}
+                  hex={color}
+                  h={colorAsHct.hue}
+                  c={colorAsHct.chroma}
+                  t={colorAsHct.tone}
+                  display={display}
+                />
+              ) : (
+                <td key={tone} className="swatch" />
+              )
+            )}
           </tr>
         </tbody>
       </table>
